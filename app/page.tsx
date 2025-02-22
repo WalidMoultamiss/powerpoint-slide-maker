@@ -1,10 +1,11 @@
 "use client"
-
+import { motion } from "framer-motion";
 import { useState } from "react"
 import PowerPointGenerator from "../powerpoint-generator"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { themes } from "../themes"
+import { PanelLeftCloseIcon, PanelRightClose } from "lucide-react";
 
 const exampleData = {
   "slides": [
@@ -137,11 +138,22 @@ export default function Home() {
     setJsonInput(JSON.stringify(exampleData, null, 2))
   }
 
+  const [Toggle, setToggle] = useState(true);
+
   return (
     <main className="min-h-screen bg-gray-100 py-8">
       <h1 className="text-3xl font-bold text-center mb-8">PowerPoint Slide Generator</h1>
       <div className="flex flex-col md:flex-row gap-8 px-4">
-        <div className="w-full md:w-1/3 space-y-4">
+        <motion.div
+        initial={{
+          width : '0%',
+          opacity : 0
+        }}
+        animate={{
+          width : Toggle ? '33%' : '0%',
+          opacity : Toggle ? 1 : 0
+        }}
+        className="w-full overflow-x-scroll space-y-4">
           <Textarea
             value={jsonInput}
             onChange={(e) => setJsonInput(e.target.value)}
@@ -154,8 +166,17 @@ export default function Home() {
               Insert Example
             </Button>
           </div>
+        </motion.div>
+        <div className="">
+          <Button variant="outline" onClick={()=>setToggle(v=>!v)}>
+            {Toggle ? (
+              <PanelLeftCloseIcon className="w-4 h-4" />
+            ) : (
+              <PanelRightClose className="w-4 h-4" />
+            )}
+          </Button>
         </div>
-        <div className="w-full md:w-2/3">
+        <div className="w-full ">
           <PowerPointGenerator
             data={slidesData}
             updateData={setSlidesData}
