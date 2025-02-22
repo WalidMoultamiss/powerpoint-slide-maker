@@ -84,11 +84,11 @@ export default function LivePresentation() {
     <div className={`min-h-screen flex flex-col justify-center items-center p-8 ${theme.background} ${theme.text}`}>
       <div className="absolute top-4 right-4 z-10">
         <Button onClick={openComments}>
-          <MessageSquare className="mr-2 h-4 w-4" /> Comments
+          <MessageSquare className=" h-4 w-4" />
         </Button>
       </div>
       <div className="flex-grow flex flex-col justify-center items-center w-full">
-        <h1 className={`text-4xl font-bold mb-8 ${theme.primary} p-4 rounded`}>{slide.title}</h1>
+        <h1 className={`text-4xl font-bold mb-8 ${theme.primary} text-white p-4 rounded`}>{slide.title}</h1>
         <ul className="list-disc list-inside space-y-6 text-2xl max-w-4xl">
           {slide.content.map((item, index) => (
             <li key={index}>{item}</li>
@@ -97,10 +97,10 @@ export default function LivePresentation() {
       </div>
       <div className="fixed bottom-8 left-0 right-0 flex justify-between px-8">
         <Button onClick={prevSlide} disabled={currentSlide === 0} size="lg">
-          <ChevronLeft className="mr-2 h-6 w-6" /> Previous
+          <ChevronLeft className="mr-2 h-6 w-6" />
         </Button>
         <Button onClick={nextSlide} disabled={currentSlide === data.slides.length - 1} size="lg">
-          Next <ChevronRight className="ml-2 h-6 w-6" />
+          <ChevronRight className="ml-2 h-6 w-6" />
         </Button>
       </div>
     </div>

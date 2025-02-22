@@ -70,7 +70,7 @@ export default function CommentsPopup() {
       {slide.comments && slide.comments.length > 0 ? (
         <ul className="list-disc list-inside space-y-2 mb-4">
           {slide.comments.map((comment, index) => (
-            <li key={index} className="text-sm">
+            <li key={index} className="text-lg">
               {comment}
             </li>
           ))}
